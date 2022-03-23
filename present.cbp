@@ -34,6 +34,12 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="param.h" />
+		<Unit filename="present.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="present.cbp" />
+		<Unit filename="present.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
