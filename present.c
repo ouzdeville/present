@@ -13,6 +13,7 @@ void init(){
    state = (uint8_t *) calloc( PRESENT_CRYPT_SIZE, sizeof(uint8_t) );
    register_key = (uint8_t *) calloc( PRESENT_KEY_SIZE, sizeof(uint8_t) );
    round_key = (uint8_t *) calloc( PRESENT_CRYPT_SIZE, sizeof(uint8_t) );
+
 }
 
 void keygen(){

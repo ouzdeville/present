@@ -7,7 +7,7 @@
 /**
  * Lookup table for PRESENT substitution process.
  */
-static uint8_t const g_sbox[] = {0x0Cu, 0x05u, 0x06u, 0x0Bu, \
+static uint8_t const sbox[] = {0x0Cu, 0x05u, 0x06u, 0x0Bu, \
                                  0x09u, 0x00u, 0x0Au, 0x0Du, \
                                  0x03u, 0x0Eu, 0x0Fu, 0x08u, \
                                  0x04u, 0x07u, 0x01u, 0x02u};
@@ -15,7 +15,7 @@ static uint8_t const g_sbox[] = {0x0Cu, 0x05u, 0x06u, 0x0Bu, \
 /**
  * Lookup table for PRESENT inverse substitution process.
  */
-static uint8_t const g_sbox_inv[] = {0x05u, 0x0Eu, 0x0Fu, 0x08u, \
+static uint8_t const sbox_inv[] = {0x05u, 0x0Eu, 0x0Fu, 0x08u, \
                                      0x0Cu, 0x01u, 0x02u, 0x0Du, \
                                      0x0Bu, 0x04u, 0x06u, 0x03u, \
                                      0x00u, 0x07u, 0x09u, 0x0Au};
