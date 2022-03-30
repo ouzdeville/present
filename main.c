@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 #include "param.h"
@@ -11,12 +12,13 @@ int main()
     init();
     keygen();
     sub_key();
-     for(i=PRESENT_KEY_SIZE-1; i >= 0; i--)
-        printf("%d ", *(register_key+i));
-    printf("\n");
-    for(i=PRESENT_CRYPT_SIZE-1; i >= 0; i--)
-        printf("%d ", *(round_key+i));
+    print_byte(register_key, PRESENT_KEY_SIZE);
+    print_byte(round_key, PRESENT_CRYPT_SIZE);
 
+     uint8_t state1[]={0xF1,0xF1,0xF1,0xF1,0xF1,0xF1,0xF2,0xF1};
+    memcpy( state, state1, PRESENT_CRYPT_SIZE );
+    add_round_key();
 
+    print_byte(state, PRESENT_CRYPT_SIZE);
     return 0;
 }

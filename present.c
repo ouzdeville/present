@@ -26,6 +26,7 @@ void keygen(){
 }
 
 void sub_key(){
+//    ASSERT(NULL != register_key);
    round_key = (uint8_t *) calloc( PRESENT_CRYPT_SIZE, sizeof(uint8_t) );
    int i=0;
    for( i = 2 ; i < PRESENT_KEY_SIZE ; i++ ) {
@@ -33,4 +34,20 @@ void sub_key(){
    }
 }
 
+void add_round_key(){
+ // ASSERT(NULL != state);
+  //ASSERT(NULL != round_key);
+  int i=0;
+  for(i=0; i<PRESENT_CRYPT_SIZE ; i++ ){
+    state[i]=state[i]^round_key[i];
+  }
+}
+
+void print_byte(uint8_t * bytes, int size){
+ int i=0;
+ printf("\n");
+ for(i=size-1; i >= 0; i--)
+        printf("%d ", bytes[i]);
+ printf("\n");
+}
 
