@@ -9,8 +9,13 @@ int main()
 {
     int i=0;
     init();
-     for(i=0; i < PRESENT_KEY_SIZE; i++)
-        printf("%d", *(register_key+i));
+    keygen();
+    sub_key();
+     for(i=PRESENT_KEY_SIZE-1; i >= 0; i--)
+        printf("%d ", *(register_key+i));
+    printf("\n");
+    for(i=PRESENT_CRYPT_SIZE-1; i >= 0; i--)
+        printf("%d ", *(round_key+i));
 
 
     return 0;
