@@ -9,7 +9,8 @@ int main()
 {
     int i=0;
     init();
-     for(i=0; i < PRESENT_CRYPT_SIZE; i++) printf("%d", *(r_key+i));
+     for(i=0; i < PRESENT_KEY_SIZE; i++)
+        printf("%d", *(register_key+i));
 
 
     return 0;
