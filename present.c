@@ -52,3 +52,17 @@ void print_byte(uint8_t * bytes, int size){
  printf("\n");
 }
 
+uint8_t two_sbox(uint8_t input){
+    uint8_t high=(input>>4) & 0x0F;
+    high=sbox[high];
+    uint8_t low=(input) & 0x0F;
+    low=sbox[low];
+    return ((high<<4) | low)& 0xFF
+}
+
+void sBoxLayer(){
+    for(i=0; i<PRESENT_CRYPT_SIZE ; i++ ){
+    state[i]=two_sbox(state[i]);
+  }
+}
+

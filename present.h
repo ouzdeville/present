@@ -33,7 +33,7 @@ void sub_key();
 
 void add_round_key();
 
-void two_sbox(uint8_t * input,  uint8_t * output);
+uint8_t two_sbox(uint8_t  input,  uint8_t  output);
 void simple_sbox(uint8_t * input,  uint8_t * register_key);
 void sBoxLayer(uint8_t * state);
 void pLayer(uint8_t * state);
