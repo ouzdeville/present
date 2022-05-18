@@ -5,9 +5,10 @@
 #include <stdint.h>
 
 
-uint8_t * state;
-uint8_t * register_key;
-uint8_t *round_key;
+extern  uint8_t * state;
+extern  uint8_t * register_key;
+extern  uint8_t *round_key;
+
 /**
  * Lookup table for PRESENT substitution process.
  */
@@ -24,7 +25,9 @@ static uint8_t const sbox_inv[] = {0x05u, 0x0Eu, 0x0Fu, 0x08u, \
                                      0x0Bu, 0x04u, 0x06u, 0x03u, \
                                      0x00u, 0x07u, 0x09u, 0x0Au};
 
-
+uint8_t * state;
+uint8_t * register_key;
+uint8_t *round_key;
 
 void init();
 void keygen();

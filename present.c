@@ -5,6 +5,11 @@
 #include "param.h"
 #include "present.h"
 
+
+uint8_t * state;
+uint8_t * register_key;
+uint8_t *round_key;
+
 /**
 * Ici on fait l'allocation dynamique de la mémoire avec calloc pour mettre les valeur à zéro
 */
