@@ -57,10 +57,11 @@ uint8_t two_sbox(uint8_t input){
     high=sbox[high];
     uint8_t low=(input) & 0x0F;
     low=sbox[low];
-    return ((high<<4) | low)& 0xFF
+    return ((high<<4) | low)& 0xFF;
 }
 
 void sBoxLayer(){
+    int i=0;
     for(i=0; i<PRESENT_CRYPT_SIZE ; i++ ){
     state[i]=two_sbox(state[i]);
   }

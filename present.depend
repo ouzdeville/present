@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1648670814 source:e:\cryptolegere\present\present.c
+1652887498 source:e:\cryptolegere\present\present.c
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
@@ -8,14 +8,15 @@
 
 1648667206 e:\cryptolegere\present\param.h
 
-1648670492 e:\cryptolegere\present\present.h
+1652887488 e:\cryptolegere\present\present.h
 	<stdio.h>
 	<stdlib.h>
 	<stdint.h>
 
-1648670792 source:e:\cryptolegere\present\main.c
+1648671477 source:e:\cryptolegere\present\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"param.h"
 	"present.h"
 

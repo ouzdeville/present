@@ -33,9 +33,9 @@ void sub_key();
 
 void add_round_key();
 
-uint8_t two_sbox(uint8_t  input,  uint8_t  output);
+uint8_t two_sbox(uint8_t input);
 void simple_sbox(uint8_t * input,  uint8_t * register_key);
-void sBoxLayer(uint8_t * state);
+void sBoxLayer();
 void pLayer(uint8_t * state);
 void encrypt(uint8_t * msg, uint8_t const * register_key);
 
