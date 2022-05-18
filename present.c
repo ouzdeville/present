@@ -1,8 +1,7 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>  // rand(), srand()
+#include <time.h>    // time()
 #include <math.h>
-
-
 #include "param.h"
 #include "present.h"
 
