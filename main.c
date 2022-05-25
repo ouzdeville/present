@@ -8,17 +8,18 @@
 
 int main()
 {
-    int i=0;
     init();
-    keygen();
-    sub_key();
-    print_byte(register_key, PRESENT_KEY_SIZE);
-    print_byte(round_key, PRESENT_CRYPT_SIZE);
+    uint8_t * msg;
+    msg = (uint8_t *) calloc( PRESENT_CRYPT_SIZE, sizeof(uint8_t) );
 
-     uint8_t state1[]={0xF1,0xF1,0xF1,0xF1,0xF1,0xF1,0xF2,0xF1};
-    memcpy( state, state1, PRESENT_CRYPT_SIZE );
-    add_round_key();
+    uint8_t * key;
+    key = (uint8_t *) calloc( PRESENT_KEY_SIZE, sizeof(uint8_t) );
 
-    print_byte(state, PRESENT_CRYPT_SIZE);
+    encrypt(msg, key);
+
+    printBinary(state, PRESENT_CRYPT_SIZE);
+    printHex(state, PRESENT_CRYPT_SIZE);
+
     return 0;
+
 }
