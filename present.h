@@ -34,7 +34,7 @@ static uint8_t const sbox_inv[] = {0x05u, 0x0Eu, 0x0Fu, 0x08u, \
 void init();
 void keygen();
 
-void circle_shift();
+void right_circle_shift();
 void update(uint8_t round_counter, op_mode mode);
 void sub_key();
 
@@ -48,6 +48,11 @@ void encrypt(uint8_t * msg, uint8_t const * key);
 
 void print_byte(uint8_t * bytes, int size);
 
+
+
+void left_circle_shift();
+uint8_t two_sbox_inv(uint8_t input);
+void sBoxLayer_inv();
 void decrypt(uint8_t * msg, uint8_t const * register_key);
 
 

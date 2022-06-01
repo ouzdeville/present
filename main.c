@@ -15,11 +15,8 @@ int main()
     uint8_t * key;
     key = (uint8_t *) calloc( PRESENT_KEY_SIZE, sizeof(uint8_t) );
 
-    encrypt(msg, key);
-
-    printBinary(state, PRESENT_CRYPT_SIZE);
+    encrypt(msg,key);
     printHex(state, PRESENT_CRYPT_SIZE);
-
     return 0;
 
 }

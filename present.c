@@ -93,7 +93,7 @@ void pLayer(op_mode mode)
         else state[poz/8] &= (UN<<(poz%8))^0xFF;
     }
 }
-void circle_shift()
+void right_circle_shift()
 {
     if(PRESENT==80)
     {
@@ -123,7 +123,7 @@ void update(uint8_t round_counter, op_mode mode)
 {
     if(PRESENT==80 && mode==ENCRYPT_MODE)
     {
-        circle_shift();
+        right_circle_shift();
 
         uint8_t high=sbox[(register_key[PRESENT_KEY_SIZE-1]>>4) & 0x0F];
         uint8_t low=(register_key[PRESENT_KEY_SIZE-1]) & 0x0F;
@@ -150,26 +150,19 @@ void encrypt(uint8_t * msg, uint8_t const * key)
     memcpy(register_key, key, PRESENT_KEY_SIZE);
     uint8_t round;
     round = 1u;
-    sub_key();
-    printf("msg      :");
-    printBinary(state, PRESENT_CRYPT_SIZE);
-    printf("register :");
-    printBinary(register_key, PRESENT_KEY_SIZE);
-    add_round_key();
+
     while (round <= PRESENT_ROUND_COUNT)
     {
-
-        sBoxLayer();
-        //printf("sboxed   :");
-        //printBinary(state, PRESENT_CRYPT_SIZE);
-        pLayer(ENCRYPT_MODE);
-        //printf("permuted :");
-        //printBinary(state, PRESENT_CRYPT_SIZE);
-        update(round,ENCRYPT_MODE);
         sub_key();
         add_round_key();
+        sBoxLayer();
+        pLayer(ENCRYPT_MODE);
+        update(round,ENCRYPT_MODE);
+
         round++;
     };
+    sub_key();
+    add_round_key();
 
 
 }
