@@ -12,7 +12,7 @@ uint8_t * register_key;
 uint8_t *round_key;
 
 /**
-* Ici on fait l'allocation dynamique de la mémoire avec calloc pour mettre les valeur à zéro
+* Ici on fait l'allocation dynamique de la mï¿½moire avec calloc pour mettre les valeur ï¿½ zï¿½ro
 */
 void init()
 {
@@ -166,6 +166,87 @@ void encrypt(uint8_t * msg, uint8_t const * key)
 
 
 }
+
+state[j] = temp[j];
+        }
+    }
+}
+
+uint8_t gmul(uint8_t a, uint8_t b)
+{
+    uint8_t p = 0;
+    uint8_t counter;
+    uint8_t hi_bit_set;
+    for (counter = 0; counter < 8; counter++) {
+        if (b & 1)
+            p ^= a;
+        hi_bit_set = (a & 0x80);
+        a <<= 1;
+        if (hi_bit_set)
+            a ^= 0x1b;
+        b >>= 1;
+    }
+    return p;
+}
+
+void inverseMixColumns(uint8_t state[PRESENT_CRYPT_SIZE])
+{
+    int i, j, k;
+    uint8_t temp[PRESENT];
+
+    for (i = 0; i < PRESENT_CRYPT_BIT_SIZE; i++) {
+        for (j = 0; j < PRESENT; j++) {
+            temp[j] = 0;
+            for (k = 0; k < PRESENT_CRYPT_BIT_SIZE; k++) {
+                temp[j] ^= gmul(sbox_inv[j][k], state[k * PRESENT_CRYPT_BIT_SIZE + i]);
+            }
+        }
+        for (j = 0; j < PRESENT; j++) {
+            state[j * PRESENT_CRYPT_BIT_SIZE + i] = temp[j];
+        }
+    }
+}
+
+
+void keySchedule(uint8_t *key)
+{
+uint8_t round_constant = 0x80;
+uint8_t temp[8];
+
+for (int i = 0; i < 31; i++) {
+    for (int j = 0; j < 8; j++) {
+        temp[j] = key[(i*8 + j + 8) % 64];
+    }
+    temp[0] ^= sbox[temp[7]] ^ round_constant;
+    round_constant = (round_constant << 1) ^ ((round_constant & 0x80) ? 0x1B : 0x00);
+
+    for (int j = 0; j < 8; j++) {
+        key[(i*8 + j + 8) % 64] = temp[j];
+    }
+}
+}
+
+void decrypt(uint8_t *ciphertext, uint8_t *key) {
+    uint8_t i, j, round;
+    uint16_t sk[32];
+
+    memcpy(state, ciphertext, PRESENT_CRYPT_SIZE);
+
+    keySchedule(key, sk);
+
+    for (round = 31; round > 0; round--) {
+        inverseSubBytes();
+        inverseShiftRows();
+        if (round > 1) {
+            inverseMixColumns();
+        }
+        addRoundKey(sk[round]);
+    }
+    inverseSubBytes();
+    inverseShiftRows();
+    addRoundKey(sk[0]);
+}
+
 
 
 void print_byte(uint8_t * bytes, int size)
