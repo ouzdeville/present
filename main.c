@@ -17,6 +17,8 @@ int main()
 
     encrypt(msg,key);
     printHex(state, PRESENT_CRYPT_SIZE);
+
+    decrypt(encrypt(msg,key), key);
     return 0;
 
 }
